@@ -18,8 +18,12 @@ console.log(getComputerChoice());
 
 
 function playRound(playerSelection, computerSelection) {
-    
+    const status = getWinStatus(playerSelection, computerSelection);
+    const verb = getVerb(status);
+    return `You ${status}! ${playerSelection[0].toUpperCase() + playerSelection.slice(1)} ${verb} ${computerSelection}!`
 }
+
+console.log(playRound('scissors', 'paper'));
 
 function getWinStatus(playerSelection, computerSelection) {
     let status;
@@ -79,4 +83,20 @@ function getWinStatus(playerSelection, computerSelection) {
     return status;
 }
 
-console.log(getWinStatus('paper', 'scissors'));
+
+
+function getVerb(status) {
+    switch (status) {
+    case 'win':
+        return 'beats'
+        break;
+    case 'lose':
+        return 'is defeated by'
+        break;
+    case 'draw':
+        return 'draws against'
+        break;
+
+    default:
+        break;
+}}
