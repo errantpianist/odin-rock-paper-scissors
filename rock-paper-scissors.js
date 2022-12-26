@@ -2,28 +2,28 @@ function getComputerChoice() {
     const choice = Math.floor(Math.random()* 3)
     switch (choice) {
         case 0:
-            return 'Rock';
+            return 'rock';
             break;
         case 1:
-            return 'Paper';
+            return 'paper';
             break;
     
         case 2:
-            return 'Scissors';
+            return 'scissors';
             break;
     }
 }
 
-console.log(getComputerChoice());
+//console.log(getComputerChoice());
 
 
-function playRound(playerSelection, computerSelection) {
-    const status = getWinStatus(playerSelection, computerSelection);
+function playRound(playerSelection, computerSelection, status) {
+    
     const verb = getVerb(status);
     return `You ${status}! ${playerSelection[0].toUpperCase() + playerSelection.slice(1)} ${verb} ${computerSelection}!`
 }
 
-console.log(playRound('scissors', 'paper'));
+//console.log(playRound('scissors', 'paper'));
 
 function getWinStatus(playerSelection, computerSelection) {
     let status;
@@ -100,3 +100,39 @@ function getVerb(status) {
     default:
         break;
 }}
+
+function game() {
+    let wins = 0;
+    let draws = 0;
+    let losses = 0;
+
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt('Please enter your choice: rock, paper or scissors: ').toLowerCase();
+    
+        const computerSelection = getComputerChoice();
+        const status = getWinStatus(playerSelection, computerSelection);
+        console.log(playRound(playerSelection, computerSelection, status))
+        switch (status) {
+            case 'win':
+                wins++;
+                
+                break;
+            case 'draw':
+                draws++;
+                break;
+            case 'lose':
+                losses++;
+                break;
+
+        }
+
+    }
+    console.log(`You finished with ${wins} wins, ${draws} draws and ${losses} losses!`);
+    const userContinues = prompt('Play again? y/n');
+    if (userContinues === 'y') {
+        game()
+    }
+}
+
+
+game();
