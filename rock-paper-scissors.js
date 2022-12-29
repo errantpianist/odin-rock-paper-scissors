@@ -17,7 +17,37 @@ function getComputerChoice() {
 //console.log(getComputerChoice());
 
 
-function playRound(playerSelection, computerSelection, status) {
+function playRound(e) {
+//let playerSelection = prompt('Please enter your choice: rock, paper or scissors: ').toLowerCase();
+        const playerSelection = e.target.id
+        const computerSelection = getComputerChoice();
+        const status = getWinStatus(playerSelection, computerSelection);
+        const resultText = getResult(playerSelection, computerSelection, status);
+        
+        
+        const resultDiv = document.querySelector('.result');
+        resultDiv.firstChild.textContent = resultText;
+
+        switch (status) {
+            case 'win':
+                wins++;
+                break;
+            case 'draw':
+                draws++;
+                break;
+            case 'lose':
+                losses++;
+                break; }
+
+        const total = `You finished with ${wins} wins, ${draws} draws and ${losses} losses!`
+        totalString = document.getElementById('total')
+        totalString.textContent = total;
+        
+        ;
+
+}
+
+function getResult(playerSelection, computerSelection, status) {
     
     const verb = getVerb(status);
     return `You ${status}! ${playerSelection[0].toUpperCase() + playerSelection.slice(1)} ${verb} ${computerSelection}!`
@@ -101,38 +131,24 @@ function getVerb(status) {
         break;
 }}
 
-function game() {
-    let wins = 0;
-    let draws = 0;
-    let losses = 0;
 
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt('Please enter your choice: rock, paper or scissors: ').toLowerCase();
-    
-        const computerSelection = getComputerChoice();
-        const status = getWinStatus(playerSelection, computerSelection);
-        console.log(playRound(playerSelection, computerSelection, status))
-        switch (status) {
-            case 'win':
-                wins++;
-                
-                break;
-            case 'draw':
-                draws++;
-                break;
-            case 'lose':
-                losses++;
-                break;
 
-        }
 
+let wins = 0;
+let draws = 0;
+let losses = 0;
+
+
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+    button.addEventListener('click', playRound)
     }
-    console.log(`You finished with ${wins} wins, ${draws} draws and ${losses} losses!`);
-    const userContinues = prompt('Play again? y/n');
-    if (userContinues === 'y') {
-        game()
-    }
-}
+    )
 
 
-game();
+
+;
+
+
+//const userContinues = prompt('Play again? y/n');
