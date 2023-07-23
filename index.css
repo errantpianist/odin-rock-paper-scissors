@@ -1,0 +1,40 @@
+* {
+  background-color: slateblue;
+}
+
+h1 {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: grey;
+  border-radius: 10px;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+button {
+  width: 100px;
+  height: 100px;
+  border: white 3px solid;
+  border-radius: 10px;
+  background-color: grey;
+  color: white;
+  font-size: large;
+}
+
+#result {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: xx-large;
+  font-weight: bold;
+  color: white;
+  ;
+  border-radius: 10px;
+}
